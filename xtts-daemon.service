@@ -1,0 +1,15 @@
+[Unit]
+Description=XTTS v2 HTTP daemon for the Hermes WebUI xtts-tts extension
+After=network-online.target
+
+[Service]
+Type=simple
+# Adjust these three paths to your checkout, venv, and preferred port.
+WorkingDirectory=%h/xtts-tts-daemon
+ExecStart=%h/xtts-tts-daemon/.venv/bin/python %h/xtts-tts-daemon/xtts_daemon.py --port 8120 --speaker "Viktor Menelaos"
+# Add --device cuda if you have a GPU with the CUDA torch build installed.
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
